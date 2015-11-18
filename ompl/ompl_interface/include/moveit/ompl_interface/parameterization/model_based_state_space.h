@@ -43,6 +43,7 @@
 #include <moveit/kinematic_constraints/kinematic_constraint.h>
 #include <moveit/constraint_samplers/constraint_sampler.h>
 
+#include "ompl/base/spaces/RealVectorStateSpace.h"
 namespace ompl_interface
 {
 
@@ -72,7 +73,7 @@ struct ModelBasedStateSpaceSpecification
   robot_model::JointBoundsVector joint_bounds_; 
 };
 
-class ModelBasedStateSpace : public ompl::base::StateSpace
+class ModelBasedStateSpace : public ompl::base::RealVectorStateSpace
 {
 public:
   

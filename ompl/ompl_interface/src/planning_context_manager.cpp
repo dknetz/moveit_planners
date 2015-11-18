@@ -54,6 +54,7 @@
 #include <ompl/geometric/planners/rrt/RRTstar.h>
 #include <ompl/geometric/planners/prm/PRM.h>
 #include <ompl/geometric/planners/prm/PRMstar.h>
+#include <ompl/geometric/planners/bitstar/BITstar.h>
 
 #include <moveit/ompl_interface/parameterization/joint_space/joint_model_state_space_factory.h>
 #include <moveit/ompl_interface/parameterization/work_space/pose_model_state_space_factory.h>
@@ -154,6 +155,7 @@ void ompl_interface::PlanningContextManager::registerDefaultPlanners()
   registerPlannerAllocator("geometric::RRTstar", boost::bind(&allocatePlanner<og::RRTstar>, _1, _2, _3));
   registerPlannerAllocator("geometric::PRM", boost::bind(&allocatePlanner<og::PRM>, _1, _2, _3));
   registerPlannerAllocator("geometric::PRMstar", boost::bind(&allocatePlanner<og::PRMstar>, _1, _2, _3));
+  registerPlannerAllocator("geometric::BITstar", boost::bind(&allocatePlanner<og::BITstar>, _1, _2, _3));
 }
 
 void ompl_interface::PlanningContextManager::registerDefaultStateSpaces()

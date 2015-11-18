@@ -286,6 +286,8 @@ bool ompl_interface::ModelBasedPlanningContext::getSolutionPath(robot_trajectory
   traj.clear();
   if (!ompl_simple_setup_->haveSolutionPath())
     return false;
+  logInform("path length: %f" ,ompl_simple_setup_->getSolutionPath().length());
+  logInform("path waypoints: %zu" ,ompl_simple_setup_->getSolutionPath().getStateCount());
   convertPath(ompl_simple_setup_->getSolutionPath(), traj);
   return true;
 }

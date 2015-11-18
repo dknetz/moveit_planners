@@ -38,7 +38,7 @@
 #include <boost/bind.hpp>
 
 ompl_interface::ModelBasedStateSpace::ModelBasedStateSpace(const ModelBasedStateSpaceSpecification &spec)
-  : ompl::base::StateSpace()
+  : ompl::base::RealVectorStateSpace(spec.joint_model_group_->getVariableCount())
   , spec_(spec)
 {
   // set the state space name
@@ -67,6 +67,12 @@ ompl_interface::ModelBasedStateSpace::ModelBasedStateSpace(const ModelBasedState
     spec_.joint_bounds_[i] = &joint_bounds_storage_[i];
   }
   
+  for (std::size_t i = 0 ; i < spec_.joint_bounds_.size() ; ++i)
+  {
+	  bounds_.setHigh(i, spec_.joint_bounds_[i]->operator [](0).max_position_);
+	  bounds_.setLow(i, spec_.joint_bounds_[i]->operator [](0).min_position_);
+  }
+
   // default settings
   setTagSnapToSegment(0.95);
 
